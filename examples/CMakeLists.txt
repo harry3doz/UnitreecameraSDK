@@ -20,6 +20,7 @@ target_link_libraries(example_getimagetrans ${SDKLIBS})
 # add_executable(example_share ./example_share.cc)
 # target_link_libraries(example_share ${SDKLIBS})
 
+
 find_package(OpenGL REQUIRED)
 if(OpenGL_FOUND)
     include_directories(${OPENGL_INCLUDE_DIR})
@@ -58,6 +59,9 @@ endif()
 if(${ShowPointCloud})
 add_executable(example_getPointCloud ./example_getPointCloud.cc ./glViewer/glwindow_x11.cpp ./glViewer/scenewindow.cpp)
 target_link_libraries(example_getPointCloud ${SDKLIBS} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${X11_LIBRARIES} )
+
+add_executable(get_frames ./get_frames.cc ./glViewer/glwindow_x11.cpp ./glViewer/scenewindow.cpp)
+target_link_libraries(get_frames ${SDKLIBS} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${X11_LIBRARIES} )
 endif()
 
 
