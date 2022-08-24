@@ -61,7 +61,7 @@ Transmode: !!opencv-matrix
    rows: 1
    cols: 1
    dt: d
-   data: [ 2. ] 
+   data: [ 0. ] 
 #Transmission rate(FPS) in the UDP transmitting process. <= FrameRate
 Transrate: !!opencv-matrix
    rows: 1
