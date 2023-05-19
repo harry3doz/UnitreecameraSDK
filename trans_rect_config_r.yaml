@@ -23,7 +23,7 @@ IpLastSegment: !!opencv-matrix
    rows: 1
    cols: 1
    dt: d
-   data: [ 15. ]
+   data: [ 33. ]
 #DeviceNode
 DeviceNode: !!opencv-matrix
    rows: 1
@@ -61,7 +61,7 @@ Transmode: !!opencv-matrix
    rows: 1
    cols: 1
    dt: d
-   data: [ 0. ] 
+   data: [ 2. ] 
 #Transmission rate(FPS) in the UDP transmitting process. <= FrameRate
 Transrate: !!opencv-matrix
    rows: 1

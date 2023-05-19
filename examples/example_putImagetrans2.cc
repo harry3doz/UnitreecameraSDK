@@ -10,6 +10,7 @@
 
 #include <UnitreeCameraSDK.hpp>
 #include <unistd.h>
+#include <vector>
 
 
 /*
@@ -68,22 +69,36 @@ int main(int argc, char *argv[])
     cv::Mat depth;
     cv::Mat left,right,feim;
    
-    UnitreeCamera cam("trans_rect_config.yaml"); ///< init camera by device node number
-    if(!cam.isOpened())   ///< get camera open state
-        exit(EXIT_FAILURE);   
-
-    
-    std::string argstr = "";
-    if (argc >= 2)
+    /** arguments */
+    std::vector<std::string> argstrs;
+    if (argc == 3)
     {
-      argstr = argv[1];
+      argstrs.push_back(argv[1]);
+      argstrs.push_back(argv[2]);
+    }
+    else if (argc == 2)
+    {
+      argstrs.push_back("trans_rect_config.yaml");
+      argstrs.push_back(argv[1]);
+    }
+    else if (argc == 1)
+    {
+      argstrs.push_back("trans_rect_config.yaml");
+      argstrs.push_back("origin");
     }
     else
     {
-      argstr = "origin";
+	    std::cout << "need some arguments as below:"<< std::endl;
+	    std::cout << "config_file.yaml {origin, rect, depth}"<< std::endl;
+        exit(EXIT_FAILURE);   
     }
     
-    if (argstr.compare("origin") == 0)
+    /** set config */
+    UnitreeCamera cam(argstrs.at(0)); ///< init camera by device node number
+    if(!cam.isOpened())   ///< get camera open state
+        exit(EXIT_FAILURE);   
+    
+    if (argstrs.at(1).compare("origin") == 0)
     {
       std::cout << "origin image transfer" << std::endl;
 
@@ -101,7 +116,7 @@ int main(int argc, char *argv[])
            break;
       }
     }
-    else if (argstr.compare("rect") == 0)
+    else if (argstrs.at(1).compare("rect") == 0)
     {
       std::cout << "rect image transfer" << std::endl;
 
@@ -120,7 +135,7 @@ int main(int argc, char *argv[])
            break;
       }
     }
-    else if (argstr.compare("depth") == 0)
+    else if (argstrs.at(1).compare("depth") == 0)
     {
       std::cout << "depth image transfer" << std::endl;
 
